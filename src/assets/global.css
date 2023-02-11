@@ -1,0 +1,407 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --active-mode-bg-clr: black;
+    --inputBox-bg-clr: rgb(58 174 241 / 37%);
+    --txt-container-box-shadow: 0 0 5px 5px rgba(128, 128, 128, 0.158);
+    --button-bg-clr: black;
+    --button-clr: white;
+    --cursor-clr: black;
+}
+
+/* classes used in js */
+.dark-theme {
+    background-color: black;
+    color: white;
+    --active-mode-bg-clr: white;
+    --button-bg-clr: white;
+    --button-clr: black;
+    --inputBox-bg-clr: white;
+    --txt-container-box-shadow: 0 0 11px 5px #ffffff61;
+    --cursor-clr: white;
+}
+
+.shift {
+    transform: translateX(100%);
+}
+
+/* end */
+
+body {
+    height: 100vh;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+button {
+    border: none;
+    background-color: var(--button-bg-clr);
+    font-family: 'Roboto Condensed', sans-serif;
+    color: var(--button-clr);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#root {
+    padding-top: 1px;
+    height: 100%;
+}
+
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* nav bar */
+nav {
+    text-align: center;
+    padding: .5rem 0;
+    position: relative;
+}
+
+/* title and tagline componenet */
+
+.title {
+    font-size: 4rem;
+    font-size: clamp(3rem, 4.5vw ,5rem);
+    font-family: 'Caveat', cursive;
+}
+
+.tagLine {
+    font-size: 1.4rem;
+    position: relative;
+    display: inline-block;
+}
+
+.tagLine::before,
+.tagLine::after {
+    position: absolute;
+    inset: 0;
+}
+
+.tagLine::before {
+    content: " ";
+    background-color: white;
+    animation: typeWriter 2s 1s steps(11) forwards;
+}
+
+.tagLine::after {
+    content: "|";
+    text-align: left;
+    animation: blinkLine 450ms 0s 5, typeWriter 2s 1s steps(11) forwards, removeLine .1s 3s 1 forwards;
+}
+
+@keyframes typeWriter {
+    to {
+        left: 101%;
+    }
+}
+
+@keyframes blinkLine {
+    to {
+        content: " ";
+    }
+}
+
+@keyframes removeLine {
+    to {
+        content: " ";
+    }
+}
+
+
+
+/* day night component */
+.dayAndNigh-container {
+    position: absolute;
+    top: 20%;
+    right: 8%;
+}
+
+/* day and night componenet inside  */
+.dayAndNight-div {
+    position: relative;
+    width: clamp(3.8rem, 5.5vw, 7rem);
+    height: 1.8rem;
+    margin-top: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 0 1px 1px grey;
+}
+
+.active-mode {
+    width: 50%;
+    background-color: var(--active-mode-bg-clr);
+    height: 100%;
+    border-radius: 5px;
+    transition: transform .6s ease;
+}
+
+.dayAndNight-div>img {
+    position: absolute;
+    top: 5%;
+    width: 1.5rem;
+}
+
+.moon-img {
+    right: 16%;
+}
+
+.day-img {
+    left: 10%;
+}
+
+/* end */
+
+
+#root>div {
+    width: 70%;
+}
+
+.container {
+    margin: auto;
+    margin-top: 2.4%;
+}
+
+/* statuc container  */
+.status-container {
+    font-size: 1.7rem;
+    justify-content: space-between;
+    margin-bottom: .7rem;
+}
+
+.rabit-img {
+    height: 72px;
+}
+
+.rabitGif-container {
+    height: 72px;
+    aspect-ratio: 1;
+    background-image: url("rabitRunning.gif");
+    background-position-x: -469px;
+    background-position-y: -311px;
+    background-size: 201px;
+}
+
+.nightMode-gif {
+    background-image: url("rabitRunning-nightMode.gif");
+}
+
+.txt-container {
+    padding: 1rem;
+    font-size: clamp(1.3rem, 1.9vw, 1.7rem);
+    max-height: 25vh;
+    box-shadow: var(--txt-container-box-shadow);
+    font-weight: 500;
+    overflow: hidden;
+    word-break: break-all;
+    line-height: 1.65;
+}
+
+
+/* input and reset button */
+.input-and-reset-container {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.start-txt-box {
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    width: 65%;
+    display: block;
+    font-size: .9rem;
+    background-color: var(--inputBox-bg-clr);
+}
+
+.input-and-reset-container>button {
+    padding: .4rem .9rem;
+    margin-left: .5rem;
+    font-size: .9rem;
+}
+
+span {
+    position: relative;
+}
+
+.cursor::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 70%;
+    top: 10%;
+    right: -2px;
+    background-color: var(--cursor-clr);
+    animation: blink .9s 0s infinite;
+}
+
+@keyframes blink {
+    to {
+        background-color: transparent;
+    }
+}
+
+/* features div  */
+
+.features {
+    position: absolute;
+    top: 0;
+    padding-left: 2rem;
+    left: 100%;
+}
+
+/* end */
+
+/* Line chart component */
+
+.graph-container {
+    margin: auto;
+    margin-top: 3.3%;
+    padding: 1rem;
+    padding-left: 3rem;
+    color: white;
+    height: 40vh;
+    background-color: black;
+    box-shadow: 0 0 8px 8px #80808047;
+}
+
+.graph {
+    height: 90%;
+    display: grid;
+    grid-template-columns: repeat(30, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    position: relative;
+}
+
+.graph::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    bottom: 2px;
+    left: 2px;
+    right: -2px;
+    background-color: black;
+    animation: curtainOpen 2s 0s 1 linear forwards;
+    z-index: 100;
+}
+
+@keyframes curtainOpen {
+    to {
+        left: 100%;
+    }
+}
+
+.line {
+    width: 3.33%;
+    height: 1px;
+    transform-origin: left;
+    background-color: red;
+}
+
+.graph div {
+    position: absolute;
+}
+
+
+.dot {
+    border-radius: 50%;
+    background-color: red;
+    width: .3rem;
+    aspect-ratio: 1;
+    transform: translate(-50%, 50%);
+}
+
+.y-axis,
+.x-axis {
+    background-color: white;
+}
+
+
+.y-axis {
+    width: 1px;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.y-axis>div {
+    right: 15px;
+    transform: translateY(50%);
+}
+
+
+.x-axis {
+    height: 1px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+.x-axis>div {
+    transform: translateX(-50%);
+}
+
+/*resutl icons */
+
+.result-details {
+    display: flex;
+    margin: auto;
+    margin-top: 1.8rem;
+}
+
+.result-details img {
+    width: 15%;
+    margin-right: .5rem;
+}
+
+.details {
+    font-size: 1.55rem;
+    text-align: center;
+}
+
+.details>span {
+    font-size: .9rem;
+}
+
+.result-controls {
+    text-align: center;
+    margin: auto;
+    padding-bottom: .8rem;
+    background-color: black;
+    border-radius: 0 0 4px 4px;
+}
+
+.result-controls>button {
+    padding: .3rem 1rem;
+    font-size: .9rem;
+    background-color: white;
+    margin-left: 1%;
+    color: black;
+}
+
+@media screen and (max-width: 600px){
+    #root>div{width: 85%;}
+    .x-axis>div{
+        font-size: 0.7rem;
+        padding-top: 0.2rem;
+    }
+    .details>span{
+        display: block;
+        font-size: .75rem;
+    };
+    .container{margin-top: 10%;}
+    .dayAndNigh-container{right: 3%;}
+    .dayAndNight-div> img{width: 1.2rem;}
+}
